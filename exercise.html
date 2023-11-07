@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./images/favicon-32x32.png"
+    />
+    <link rel="stylesheet" href="./style/style.css" />
+    <title>Advice Generator</title>
+  </head>
+  <body>
+    <div class="advice-wrapper">
+      <p class="advice-number" id="advice-number">Loading..</p>
+      <!-- <select name="advice-type" id="advice-type"></select> -->
+      <h3 class="advice" id="advice">Loading ..</h3>
+      <div class="bar-section" id="bar-section">
+        <hr />
+        <p class="bar">=</p>
+        <hr />
+      </div>
+      <button class="generate" id="generate" onclick="generate()">
+        <img src="./images/icon-dice.svg" alt="##" />
+        <p>Generate</p>
+      </button>
+    </div>
+    <footer>
+      <p>
+        A project by
+        <span>
+          <a href="https://www.instagram.com/dumplingis1020/" target="_blank"
+            >Jake dOx:
+          </a>
+        </span>
+      </p>
+      <p>
+        project from
+        <span
+          ><a href="https://frontendmentor.io" target="_blank"
+            >frontendmentor</a
+          ></span
+        >
+      </p>
+    </footer>
+  </body>
+  <script>
+    async function generateAdvice() {
+      const url =
+        "https://fortune-cookie2.p.rapidapi.com/fortune/by_category?category_key=love_and_relationships";
+      const options = {
+        method: "GET",
+        headers: {
+          "X-RapidAPI-Key":
+            "f274bccb20msh5b3841c5d971a1bp18fc58jsn7309d6848a11",
+          "X-RapidAPI-Host": "fortune-cookie2.p.rapidapi.com",
+        },
+      };
+
+      try {
+        const response = await fetch(url, options);
+        const result = await response.json();
+
+        document.getElementById("advice").textContent = result.answer;
+        document.getElementById("advice-number").textContent = result.category;
+        console.log(result.category);
+        console.log(result.answer);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+    function generate() {
+      document.getElementById("generate").disabled = true;
+
+      setTimeout(() => {
+        generateAdvice();
+
+        document.getElementById("generate").disabled = false;
+      }, 3500);
+    }
+    generateAdvice();
+
+    // async function category() {
+    //   const url =
+    //     "https://fortune-cookie2.p.rapidapi.com/fortune/category_list";
+    //   const options = {
+    //     method: "GET",
+    //     headers: {
+    //       "X-RapidAPI-Key":
+    //         "f274bccb20msh5b3841c5d971a1bp18fc58jsn7309d6848a11",
+    //       "X-RapidAPI-Host": "fortune-cookie2.p.rapidapi.com",
+    //     },
+    //   };
+
+    //   try {
+    //     const response = await fetch(url, options);
+    //     const result = await response.json();
+
+    //     const selectElement = document.getElementById("advice-type");
+
+    //     // Use map to create an array of option elements
+    //     const optionElements = result.map((element) => {
+    //       return `<option value="${element.title}">${element.title}</option>`;
+    //     });
+
+    //     // Join the array of option elements into a single string and set it as the innerHTML
+    //     selectElement.innerHTML = optionElements.join("");
+    //     console.log(selectElement.innerHTML);
+    //   } catch (error) {
+    //     console.error(error);
+    //   }
+    // }
+    // category();
+  </script>
+</html>
