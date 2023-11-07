@@ -15,9 +15,9 @@
   </head>
   <body>
     <div class="advice-wrapper">
-      <p class="advice-number" id="advice-number">Loading..</p>
+      <p class="advice-number" id="advice-number">ADVICE #117</p>
       <!-- <select name="advice-type" id="advice-type"></select> -->
-      <h3 class="advice" id="advice">Loading ..</h3>
+      <h3 class="advice" id="advice">It is easy to sit up and take notice, what's difficult is getting up and taking action.</h3>
       <div class="bar-section" id="bar-section">
         <hr />
         <p class="bar">=</p>
@@ -51,17 +51,8 @@
     async function generateAdvice() {
       const url =
         "https://fortune-cookie2.p.rapidapi.com/fortune/by_category?category_key=love_and_relationships";
-      const options = {
-        method: "GET",
-        headers: {
-          "X-RapidAPI-Key":
-            "f274bccb20msh5b3841c5d971a1bp18fc58jsn7309d6848a11",
-          "X-RapidAPI-Host": "fortune-cookie2.p.rapidapi.com",
-        },
-      };
-
       try {
-        const response = await fetch(url, options);
+        const response = await fetch(url );
         const result = await response.json();
 
         document.getElementById("advice").textContent = result.answer;
@@ -83,36 +74,5 @@
     }
     generateAdvice();
 
-    // async function category() {
-    //   const url =
-    //     "https://fortune-cookie2.p.rapidapi.com/fortune/category_list";
-    //   const options = {
-    //     method: "GET",
-    //     headers: {
-    //       "X-RapidAPI-Key":
-    //         "f274bccb20msh5b3841c5d971a1bp18fc58jsn7309d6848a11",
-    //       "X-RapidAPI-Host": "fortune-cookie2.p.rapidapi.com",
-    //     },
-    //   };
-
-    //   try {
-    //     const response = await fetch(url, options);
-    //     const result = await response.json();
-
-    //     const selectElement = document.getElementById("advice-type");
-
-    //     // Use map to create an array of option elements
-    //     const optionElements = result.map((element) => {
-    //       return `<option value="${element.title}">${element.title}</option>`;
-    //     });
-
-    //     // Join the array of option elements into a single string and set it as the innerHTML
-    //     selectElement.innerHTML = optionElements.join("");
-    //     console.log(selectElement.innerHTML);
-    //   } catch (error) {
-    //     console.error(error);
-    //   }
-    // }
-    // category();
   </script>
 </html>
