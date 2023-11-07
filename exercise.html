@@ -48,31 +48,31 @@
     </footer>
   </body>
   <script>
-    async function generateAdvice() {
-      const url =
-        "https://fortune-cookie2.p.rapidapi.com/fortune/by_category?category_key=love_and_relationships";
-      try {
-        const response = await fetch(url );
-        const result = await response.json();
+    // async function generateAdvice() {
+    //   const url =
+    //     "https://fortune-cookie2.p.rapidapi.com/fortune/by_category?category_key=love_and_relationships";
+    //   try {
+    //     const response = await fetch(url );
+    //     const result = await response.json();
 
-        document.getElementById("advice").textContent = result.answer;
-        document.getElementById("advice-number").textContent = result.category;
-        console.log(result.category);
-        console.log(result.answer);
-      } catch (error) {
-        console.error(error);
-      }
-    }
-    function generate() {
-      document.getElementById("generate").disabled = true;
+    //     document.getElementById("advice").textContent = result.answer;
+    //     document.getElementById("advice-number").textContent = result.category;
+    //     console.log(result.category);
+    //     console.log(result.answer);
+    //   } catch (error) {
+    //     console.error(error);
+    //   }
+    // }
+    // function generate() {
+    //   document.getElementById("generate").disabled = true;
 
-      setTimeout(() => {
-        generateAdvice();
+    //   setTimeout(() => {
+    //     generateAdvice();
 
-        document.getElementById("generate").disabled = false;
-      }, 2500);
-    }
-    generateAdvice();
+    //     document.getElementById("generate").disabled = false;
+    //   }, 2500);
+    // }
+    // generateAdvice();
 
   </script>
 </html>
